@@ -8,10 +8,11 @@ public class Functions {
 
     public static int mapReduce(int zero, BiFunction<Integer, Integer, Integer> op,
                                 Function<Integer, Integer> f, int a, int b) {
-        if (a > b)
-            return zero;
-        else
-            return op.apply(f.apply(a), mapReduce(zero, op,f,a+1, b));
+        int res = zero;
+        for (int i = a; i < b+1; ++i) {
+            res = op.apply(res, f.apply(i));
+        }
+        return res;
     }
 
     public static int product(Function<Integer,Integer> f, int a, int b) {
