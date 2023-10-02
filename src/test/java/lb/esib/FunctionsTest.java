@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import lb.esib.Functions;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static lb.esib.Functions.*;
 
 
@@ -15,7 +17,8 @@ public class FunctionsTest {
 
     @Test
     public void sumCubesTest() {
-        assertEquals(1625625, sumCubes(0, 50));
+        Integer expected = 1625625;
+        assertEquals(1625625, sumCubes.apply(0, 50));
     }
 
     @Test

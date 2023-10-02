@@ -3,6 +3,9 @@ package lb.esib;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+
+
+
 public class Functions {
 
     public static int mapReduce(int zero, BiFunction<Integer, Integer, Integer> op,
@@ -14,6 +17,10 @@ public class Functions {
         return res;
     }
 
+    public static <A, B, C, R> BiFunction<B, C, R> partial(TriFunction<A, B, C, R> f, A x) {
+        return (y, z) -> f.apply(x, y, z);
+    }
+
     public static int product(Function<Integer,Integer> f, int a, int b) {
         return mapReduce(1, (x, y) -> x * y, f, a, b);
     }
@@ -22,10 +29,12 @@ public class Functions {
         return mapReduce(0, (x, y) -> y + x, f, a, b);
     }
 
+    public static final BiFunction<Integer, Integer, Integer> sumCubes =
+            partial(Functions::sum, x->x*x*x);
 
-    public static int sumCubes(int a, int b) {
-        return sum(x -> x * x * x, a, b);
-    }
+//    public static int sumCubes(int a, int b) {
+//        return sum(x -> x * x * x, a, b);
+//    }
 
     public static int sumInts(int a, int b) {
         return sum(x -> x, a, b);
