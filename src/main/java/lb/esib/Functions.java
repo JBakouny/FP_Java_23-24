@@ -1,22 +1,25 @@
 package lb.esib;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Functions {
 
 
-    public static int product(Function<Integer,Integer> f, int a, int b) {
+    public static int mapReduce(int zero, BiFunction<Integer, Integer, Integer> op,
+                                Function<Integer, Integer> f, int a, int b) {
         if (a > b)
-            return 1;
+            return zero;
         else
-            return f.apply(a) * product(f,a+1, b);
+            return op.apply(f.apply(a), mapReduce(zero, op,f,a+1, b));
+    }
+
+    public static int product(Function<Integer,Integer> f, int a, int b) {
+        return mapReduce(1, (x, y) -> x * y, f, a, b);
     }
 
     public static int sum(Function<Integer,Integer> f, int a, int b) {
-        if (a > b)
-            return 0;
-        else
-            return f.apply(a) + sum(f,a+1, b);
+        return mapReduce(0, (x, y) -> y + x, f, a, b);
     }
 
 
