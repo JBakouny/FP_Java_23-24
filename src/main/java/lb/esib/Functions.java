@@ -5,7 +5,6 @@ import java.util.function.Function;
 
 public class Functions {
 
-
     public static int mapReduce(int zero, BiFunction<Integer, Integer, Integer> op,
                                 Function<Integer, Integer> f, int a, int b) {
         int res = zero;
@@ -38,7 +37,7 @@ public class Functions {
     }
 
     public static int sumFact(int a, int b) {
-        return sum(x-> Functions.factorial(x), a, b);
+        return sum(Functions::factorial, a, b);
     }
 
     private Functions() {
