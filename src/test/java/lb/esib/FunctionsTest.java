@@ -1,7 +1,6 @@
 package lb.esib;
 import static org.junit.Assert.assertEquals;
 
-import lb.esib.Functions;
 import org.junit.Test;
 
 import static lb.esib.Functions.*;
