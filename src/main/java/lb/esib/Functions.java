@@ -4,6 +4,13 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Functions {
+    public static int gcd(int a, int b) {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+
 
     public static int mapReduce(int zero, BiFunction<Integer, Integer, Integer> op,
                                 Function<Integer, Integer> f, int a, int b) {
