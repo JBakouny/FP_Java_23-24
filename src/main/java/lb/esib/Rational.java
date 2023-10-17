@@ -6,9 +6,16 @@ import static lb.esib.Functions.gcd;
 
 public class Rational {
     public Rational(int x, int y) {
+        if (y <= 0) {
+            throw new IllegalArgumentException("denominator must be positive");
+        }
         int g = gcd(x, y);
         this.x = x / g;
         this.y = y / g;
+    }
+
+    public Rational(int x) {
+        this(x, 1);
     }
 
     public int numer() {
